@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Моя страница</title>
+    <style>
+        /* Сделать шрифт крупнее */
+        body {
+            font-size: 3em;
+        }
+        /* Расположить значения горизонтально с большим пробелом */
+        .value {
+            margin-right: 100px;
+            display: inline-block;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+    <script>
+        // Настройка Firebase
+        var firebaseConfig = {
+  apiKey: "AIzaSyCktjTkzbdlgv88N4vuThd3xi2ksdHgNaw",
+  authDomain: "test-5e2e5.firebaseapp.com",
+  databaseURL: "https://test-5e2e5.firebaseio.com",
+  projectId: "test-5e2e5",
+  storageBucket: "test-5e2e5.appspot.com",
+  messagingSenderId: "636910289140",
+  appId: "1:636910289140:web:3a3eb0fa5daf2db69bdea1"        };
+        // Инициализация Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Получение данных из Firebase
+        let db = firebase.database();
+        
+        // Замените 'value1', 'value2', 'value3' на ваши собственные пути к данным
+        let ref1 = db.ref('data/value1');
+        let ref2 = db.ref('data/value2');
+        let ref3 = db.ref('data/value3');
+
+        ref1.on('value', snapshot => {
+            let value = snapshot.val();
+            document.getElementById('valueContainer1').innerHTML = value;
+        });
+
+        ref2.on('value', snapshot => {
+            let value = snapshot.val();
+            document.getElementById('valueContainer2').innerHTML = value;
+        });
+
+        ref3.on('value', snapshot => {
+            let value = snapshot.val();
+            document.getElementById('valueContainer3').innerHTML = value;
+        });
+    </script>
+</head>
+<body>
+    <div id="valueContainer1" class="value"></div>
+    <div id="valueContainer2" class="value"></div>
+    <div id="valueContainer3" class="value"></div>
+</body>
+</html>
